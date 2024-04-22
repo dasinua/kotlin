@@ -1,0 +1,173 @@
+https://kotlinlang.org/docs/home.html
+JetBrains Academy
+https://hyperskill.org/tracks
+
+
+IntelliJ IDEA Community Edition
+Refactor -> Rename (Shift+F6) - переименовать переменную по всему коду
+Tools -> Kotlin -> Kotlin REPL — это инструмент для быстрого запуска фрагментов кода
+
+Kotlin/JVM обозначает код для виртуальной машины Java
+corretto-21 Amazon
+Gradle - инструмент для автоматизации сборки проектов
+Gradle DSL (Domain Specific Language)
+
+В группе Build System выберите вариант IntelliJ или Gradle Groovy
+IntelliJ - Это нативный конструктор, не требующий загрузки дополнительных артефактов
+Gradle Groovy - это язык программирования Groovy, который используется для написания сценариев сборки (build scripts) в инструменте сборки Gradle.
+
+В папке src/main/kotlin будут сохраняться все файлы проекта.
+Функция — main — имеет особое значение в Kotlin. Она определяет начальную точку программы.
+										Комментарии
+// This is an end-of-line comment
+
+/* This is a block comment
+   on multiple lines. */
+KDoc syntax
+/**
+ * A group of *members*.
+ * @param T the type of a member in this group.
+ */
+                                        Числа
+Целочисленные типы
+Byte(8), Short(16), Int(32), Long(64)	
+val num = 2_147_483_647  // Int	
+val oneLong = 5_147_483_647L // Long
+
+Типы с плавающей запятой
+Float(32), Double(64)
+val eDouble = 2.7182818284  // Double
+val eFloat  = 2.7182818284f // Float, actual value is 2.7182817	
+	
+Все типы чисел поддерживают преобразования в другие типы:
+toInt(): Int
+toLong(): Long
+toFloat(): Float
+toDouble(): Double
+val l = 1L + 3 // Long + Int => Long - нет необходимости в явных преобразованиях
+Чтобы вернуть тип с плавающей запятой, явно преобразуйте один из аргументов в тип с плавающей запятой:
+val x = 5 / 2.toDouble()
+println(x == 2.5)
+
+                                    Логические значения	
+|| – disjunction (logical OR)
+&& – conjunction (logical AND)
+! – negation (logical NOT)	
+
+val myTrue: Boolean = true
+val myFalse: Boolean = false
+val boolNull: Boolean? = null
+println(myTrue || myFalse)
+// true
+println(myTrue && myFalse)
+// false
+println(!myTrue)
+// false
+println(boolNull)
+// null	
+
+                                        Символы						
+val aChar: Char = 'a'
+
+Специальные символы начинаются с экранирующей обратной косой черты \
+println('\n') 
+
+                                        Строки
+val str = "abcd 123"
+for (c in str) {
+    println(c)
+}
+Строки неизменяемы. После инициализации строки вы не сможете изменить ее значение или присвоить ей новое значение. Все операции, преобразующие строки, возвращают свои результаты в новом Stringобъекте, оставляя исходную строку неизменной:
+Для объединения строк используйте + оператор.
+Многострочные строки
+val text = """
+    for (c in "foo")
+        print(c)
+"""
+Строковые шаблоны
+val letters = listOf("a","b","c","d","e")
+println("Letters: $letters") 
+// Letters: [a, b, c, d, e]
+val s = "abc"
+println("$s.length is ${s.length}") 
+// abc.length is 3
+
+var modifiedStr = str.substring(1, str.length - 1) - вырезает подстроку из строки
+
+                                        Массивы	
+val myArray: Array<Int> = arrayOf(3)										
+val simpleArray = arrayOf(1, 2, 3)
+val initArray = Array<Int>(3) { 0 }
+
+Преобразование в List или Set
+val simpleArray = arrayOf("a", "b", "c", "c")
+// Converts to a Set
+println(simpleArray.toSet())
+
+// Converts to a List
+println(simpleArray.toList())							
+
+                                        Переменные
+Переменная, которую можно изменить, объявляется с помощью ключевого слова var. Чтобы объявить переменную,
+доступную только для чтения, используется ключевое слово val.
+val immutableString: String = "Hello" 
+var mutableInt: Int = 42  - можно менять
+Автоматически определяет тип переменной, если он не указан явно
+
+										if
+if (a > b) {
+    max = a
+} else {
+    max = b
+}
+
+// As expression
+max = if (a > b) a else b		
+
+                                        when									   
+when (x) {
+    1 -> print("x == 1")
+    2 -> print("x == 2")
+    else -> { 
+        print("x is neither 1 nor 2")
+    }
+}								
+									
+									    for
+for (i in array.indices) {
+    println(array[i])
+}
+
+for ((index, value) in array.withIndex()) {
+    println("the element at $index is $value")
+}
+
+Цикл for с ..оператором диапазонов.
+for (i in 1..10) {
+    println(i)
+}
+
+for (i in 6 downTo 0 step 2) {
+    println(i)
+}
+
+                                       while
+while (x > 0) {
+    x--
+}
+
+do {
+    val y = retrieveData()
+} while (y != null) 
+
+                              Break and continue
+return - для немедленного выхода из функции и возврата значения вызывающей стороне
+break  - немедленно завершить выполнение цикла и перейти к следующей инструкции после цикла
+continue - позволяет пропускать выполнение оставшейся части текущей итерации цикла и переходить к следующей итерации
+
+                                   Функции
+fun double(x: Int): Int {
+    return 2 * x
+}								   
+
+https://www.youtube.com/watch?v=XInIW8py5MY&list=PL3o5sNxukLFBJYifmCcHpwXZSql5-OFB0&ab_channel=%D0%9A%D1%80%D0%B0%D0%B2%D0%B5%D1%86%D1%8C%D0%9A%D0%BE%D0%B4%D0%B8%D1%82%D1%8C%7CAndroid
